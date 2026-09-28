@@ -11,7 +11,7 @@ final class FlowerViewModelTests: XCTestCase {
         }
     }
     
-    func testScientificNameIsNilWhenCommonNameEqualIsTitle() {
+    func testScientificNameIsNilWhenCommonNameEqualsTitle() {
         let sut = FlowerViewModel()
         
         sut.didUpdateFlower("Rose", "A woody perennial flowering plant.", nil)
