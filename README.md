@@ -4,13 +4,13 @@ An iOS application that identifies a flower from a photograph entirely on-device
 
 ## 📌 Executive Summary
 
-WhatFlowers was engineered around a deliberate constraint: the recognition itself must never leave the device. A photograph selected from the library is classified locally by a custom-converted CoreML model across 102 flower species, and only the resulting label — never the image — travels over the network. Wikipedia is then queried for the species' description and reference photograph. The result is an application that performs its core function with no account, no API key, and no server, while still delivering rich, up-to-date content.
+WhatFlowers was engineered around a deliberate constraint: the recognition itself must never leave the device. A photograph selected from the library is classified locally by a converted CoreML model across the 102 species of the Oxford 102 Flower Dataset, and only the resulting label — never the image — travels over the network. Wikipedia is then queried for the species' description and reference photograph. The result is an application that performs its core function with no account, no API key, and no server, while still delivering rich, up-to-date content.
 
 ## 🛠 Technical Architecture & Core Competencies
 
 **On-Device Machine Learning:** Integrated Apple's `Vision` and `CoreML` frameworks through a `VNCoreMLRequest` pipeline. The inference is dispatched to a background quality-of-service queue so the classification of a full-resolution image never blocks the main thread.
 
-**Custom Model Conversion:** Converted a pre-trained Caffe flower classifier into Apple's `.mlpackage` format using Apple's Python tooling, rather than consuming a ready-made model. The resulting 167 MB weight file exceeds GitHub's hard limit and is version-controlled through **Git LFS**, leaving a 134-byte pointer in the repository.
+**Model Conversion & Attribution:** The classifier is not a drop-in `.mlmodel`. It originates as a Caffe model trained with convolutional neural networks by Jimmie Goode on the **Oxford 102 Flower Dataset**, a research set of 102 labelled flower categories. My work was the conversion and integration: producing an `.mlpackage` with Apple's open-source Python conversion tools, wiring it into a Vision request pipeline, and reconciling its label vocabulary with an external content source. The resulting 167 MB weight file exceeds GitHub's hard limit and is version-controlled through **Git LFS**, leaving a 134-byte pointer in the repository.
 
 **MVVM with Enforced Boundaries:** Refactored from MVC into a strict Model-View-ViewModel structure. `FlowerViewModel` owns the recognition flow and every content rule; the view controller does nothing but draw. Critically, **the view model imports no UIKit** — a constraint that makes the layer separation verifiable rather than merely claimed, and allows the entire decision layer to be tested without launching a simulator.
 
