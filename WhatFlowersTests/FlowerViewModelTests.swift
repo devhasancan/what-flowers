@@ -11,7 +11,7 @@ final class FlowerViewModelTests: XCTestCase {
         }
     }
     
-    func testScientificNameIsNilWhenNamesAreTheSame() {
+    func testScientificNameIsNilWhenCommonNameEqualIsTitle() {
         let sut = FlowerViewModel()
         
         sut.didUpdateFlower("Rose", "A woody perennial flowering plant.", nil)
@@ -38,10 +38,10 @@ final class FlowerViewModelTests: XCTestCase {
         
         sut.didUpdateFlower("Rose", "A woody perennial flowering plant.", nil)
         
-        guard case .success(let prediction) = sut.state else {
+        guard case .success(let presentation) = sut.state else {
             return XCTFail("Expected .success, but got \(sut.state)")
         }
-        XCTAssertEqual(prediction.description, "A woody perennial flowering plant.")
+        XCTAssertEqual(presentation.description, "A woody perennial flowering plant.")
     }
     
 }

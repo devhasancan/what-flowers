@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 protocol FlowerManagerDelegate: AnyObject {
     func didUpdateFlower(_ title: String, _ extract: String?, _ imageURL: String?)
