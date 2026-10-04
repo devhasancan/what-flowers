@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need your photos!</string>
+	<string>WhatFlowers opens your photo library so you can pick a flower photo to identify.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>We need to camera!</string>
+	<string>WhatFlowers uses the camera to photograph a flower and identify its species.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

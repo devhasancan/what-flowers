@@ -16,7 +16,7 @@ class FlowerViewController: UIViewController {
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
         imagePicker.allowsEditing = true
         
         let apperance = UINavigationBarAppearance()
